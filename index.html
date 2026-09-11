@@ -6,22 +6,27 @@
 
     <title>Health & Social Care Career & Qualification Finder</title>
 
+    <meta name="description" content="Find the right health and social care qualification based on your experience, career goals and current qualification level.">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<div class="container">
+
     <h1>Health & Social Care Career & Qualification Finder</h1>
 
-    <p>
-        Find the right health and social care qualification for your career goals.
+    <p class="intro">
+        Answer a few simple questions to find a health and social care qualification
+        that matches your experience, career goals and progression plans.
     </p>
 
 
     <!-- QUESTION 1 -->
-    <div class="question">
+    <div class="question" id="question1">
 
-        <h2>What is your current qualification level?</h2>
+        <h2>1. What is your current qualification level?</h2>
 
         <button onclick="selectQualification('new')">
             I'm new to health & social care
@@ -43,31 +48,35 @@
             Level 5
         </button>
 
+        <button onclick="selectQualification('level6')">
+            Level 6
+        </button>
+
     </div>
 
 
     <!-- QUESTION 2 -->
-    <div class="question">
+    <div class="question" id="question2" style="display:none;">
 
-        <h2>What is your main career goal?</h2>
+        <h2>2. What is your main career goal?</h2>
 
-        <button onclick="selectCareerGoal('Start a career in care')">
+        <button onclick="selectCareerGoal('start')">
             Start a career in care
         </button>
 
-        <button onclick="selectCareerGoal('Become a senior care worker')">
+        <button onclick="selectCareerGoal('senior')">
             Become a senior care worker
         </button>
 
-        <button onclick="selectCareerGoal('Move into care management')">
+        <button onclick="selectCareerGoal('management')">
             Move into care management
         </button>
 
-        <button onclick="selectCareerGoal('Develop my existing skills')">
+        <button onclick="selectCareerGoal('skills')">
             Develop my existing skills
         </button>
 
-        <button onclick="selectCareerGoal('Progress to a higher qualification')">
+        <button onclick="selectCareerGoal('higher')">
             Progress to a higher qualification
         </button>
 
@@ -75,27 +84,27 @@
 
 
     <!-- QUESTION 3 -->
-    <div class="question">
+    <div class="question" id="question3" style="display:none;">
 
-        <h2>What area of care are you interested in?</h2>
+        <h2>3. What area of care are you interested in?</h2>
 
-        <button onclick="selectCareType('Adult social care')">
+        <button onclick="selectCareType('adult')">
             Adult social care
         </button>
 
-        <button onclick="selectCareType('Health and social care')">
+        <button onclick="selectCareType('health')">
             Health and social care
         </button>
 
-        <button onclick="selectCareType('Care management')">
+        <button onclick="selectCareType('management')">
             Care management
         </button>
 
-        <button onclick="selectCareType('Children and young people')">
+        <button onclick="selectCareType('children')">
             Children and young people
         </button>
 
-        <button onclick="selectCareType('Not sure yet')">
+        <button onclick="selectCareType('unsure')">
             Not sure yet
         </button>
 
@@ -103,27 +112,27 @@
 
 
     <!-- QUESTION 4 -->
-    <div class="question">
+    <div class="question" id="question4" style="display:none;">
 
-        <h2>How much experience do you have in health & social care?</h2>
+        <h2>4. How much experience do you have in health & social care?</h2>
 
-        <button onclick="selectExperience('No experience')">
+        <button onclick="selectExperience('none')">
             No experience
         </button>
 
-        <button onclick="selectExperience('Less than 1 year')">
+        <button onclick="selectExperience('less1')">
             Less than 1 year
         </button>
 
-        <button onclick="selectExperience('1 to 3 years')">
+        <button onclick="selectExperience('1to3')">
             1 to 3 years
         </button>
 
-        <button onclick="selectExperience('More than 3 years')">
+        <button onclick="selectExperience('more3')">
             More than 3 years
         </button>
 
-        <button onclick="selectExperience('Experienced professional')">
+        <button onclick="selectExperience('professional')">
             I'm an experienced professional
         </button>
 
@@ -131,27 +140,27 @@
 
 
     <!-- QUESTION 5 -->
-    <div class="question">
+    <div class="question" id="question5" style="display:none;">
 
-        <h2>What would you like to do next?</h2>
+        <h2>5. What would you like to do next?</h2>
 
-        <button onclick="selectProgression('Start my career')">
+        <button onclick="selectProgression('career')">
             Start my career
         </button>
 
-        <button onclick="selectProgression('Gain a recognised qualification')">
+        <button onclick="selectProgression('qualification')">
             Gain a recognised qualification
         </button>
 
-        <button onclick="selectProgression('Progress to a higher level')">
+        <button onclick="selectProgression('higher')">
             Progress to a higher level
         </button>
 
-        <button onclick="selectProgression('Move into management')">
+        <button onclick="selectProgression('management')">
             Move into management
         </button>
 
-        <button onclick="selectProgression('Improve my existing skills')">
+        <button onclick="selectProgression('skills')">
             Improve my existing skills
         </button>
 
@@ -159,11 +168,15 @@
 
 
     <!-- RESULTS -->
-    <div class="question" id="results">
+    <div id="results" style="display:none;">
 
         <h2>Your Recommended Qualification</h2>
 
         <div id="recommendation"></div>
+
+        <button id="viewQualificationButton" onclick="viewQualification()">
+            View Qualification
+        </button>
 
         <button onclick="restartFinder()">
             Start Again
@@ -171,320 +184,908 @@
 
     </div>
 
-
-    <script>
-
-        /* =========================
-           USER ANSWERS
-        ========================= */
-
-        let answers = {
-            qualification: "",
-            careerGoal: "",
-            careType: "",
-            experience: "",
-            progression: ""
-        };
+</div>
 
 
-        /* =========================
-           QUESTION 1
-        ========================= */
+<script>
 
-        function selectQualification(level) {
+/* =========================================================
+   ILC QUALIFICATION DATA
+   ========================================================= */
 
-            answers.qualification = level;
+const qualifications = [
 
-            localStorage.setItem(
-                "qualificationLevel",
-                level
+    /* LEVEL 2 */
+
+    {
+        id: "level2-care",
+        level: 2,
+        title: "Qualifi – Level 2 Diploma in Care",
+        provider: "Qualifi",
+        requirement: "GCSE or Equivalent",
+        experienceRequirement: "No Experience",
+        duration: "6 Months",
+        roles: [
+            "Care Worker",
+            "Care Assistant",
+            "Residential Care Worker"
+        ],
+        salary: "£24,000–£32,000",
+        url: "https://inspirelondoncollege.co.uk/product/level-2-diploma-in-care-qualifi/"
+    },
+
+    {
+        id: "level2-dementia",
+        level: 2,
+        title: "iCQ Level 2 Award in Awareness of Dementia (RQF)",
+        provider: "iCQ",
+        requirement: "GCSE or Equivalent",
+        experienceRequirement: "No Experience",
+        duration: "3 Months",
+        roles: [
+            "Care Assistant",
+            "Dementia Care Support Worker",
+            "Healthcare Assistant"
+        ],
+        salary: "£24,000–£30,000",
+        url: "https://inspirelondoncollege.co.uk/product/level-2-diploma-in-care-qualifi/"
+    },
+
+
+    /* LEVEL 3 */
+
+    {
+        id: "level3-health-social",
+        level: 3,
+        title: "Qualifi – Level 3 Diploma in Health and Social Care",
+        provider: "Qualifi",
+        requirement: "GCSE or Equivalent",
+        experienceRequirement: "No Experience",
+        duration: "6 Months",
+        roles: [
+            "Senior Care Worker",
+            "Senior Support Worker",
+            "Healthcare Assistant"
+        ],
+        salary: "£28,000–£36,000",
+        url: "https://inspirelondoncollege.co.uk/product/level-3-diploma-in-health-and-social-care/"
+    },
+
+    {
+        id: "level3-foundation",
+        level: 3,
+        title: "OTHM – Level 3 Foundation Diploma in Health and Social Care",
+        provider: "OTHM",
+        requirement: "GCSE or Equivalent",
+        experienceRequirement: "No Experience",
+        duration: "6 Months",
+        roles: [
+            "Senior Care Assistant",
+            "Healthcare Support Worker",
+            "Community Support Worker"
+        ],
+        salary: "£28,000–£36,000",
+        url: "https://inspirelondoncollege.co.uk/product/level-3-diploma-in-health-and-social-care/"
+    },
+
+    {
+        id: "level3-adult-care",
+        level: 3,
+        title: "NOCN Level 3 Diploma in Adult Care",
+        provider: "NOCN",
+        requirement: "GCSE or Equivalent",
+        experienceRequirement: "No Experience",
+        duration: "6 Months",
+        roles: [
+            "Senior Care Worker",
+            "Adult Care Worker",
+            "Team Leader"
+        ],
+        salary: "£28,000–£36,000",
+        url: "https://inspirelondoncollege.co.uk/product/level-3-diploma-in-health-and-social-care/"
+    },
+
+
+    /* LEVEL 4 */
+
+    {
+        id: "level4-health-social",
+        level: 4,
+        title: "Qualifi – Level 4 Diploma in Health and Social Care",
+        provider: "Qualifi",
+        requirement: "Level 3 or Equivalent",
+        experienceRequirement: "No Experience",
+        duration: "6 Months",
+        roles: [
+            "Deputy Care Manager",
+            "Care Coordinator",
+            "Assistant Service Manager"
+        ],
+        salary: "£32,000–£42,000",
+        url: "https://inspirelondoncollege.co.uk/product/level-4-diploma-in-health-and-social-care-rqf/"
+    },
+
+    {
+        id: "level4-adult-care",
+        level: 4,
+        title: "iCQ Level 4 Diploma in Adult Care",
+        provider: "iCQ",
+        requirement: "Level 3 or Equivalent",
+        experienceRequirement: "No Experience",
+        duration: "6 Months",
+        roles: [
+            "Care Coordinator",
+            "Deputy Manager",
+            "Senior Care Supervisor"
+        ],
+        salary: "£32,000–£42,000",
+        url: "https://inspirelondoncollege.co.uk/product/level-4-diploma-in-health-and-social-care-rqf/"
+    },
+
+
+    /* LEVEL 5 */
+
+    {
+        id: "level5-health-social",
+        level: 5,
+        title: "Qualifi – Level 5 Diploma in Health and Social Care",
+        provider: "Qualifi",
+        requirement: "Level 4, HND, ND",
+        experienceRequirement: "No Experience",
+        duration: "6 Months",
+        roles: [
+            "Registered Care Manager",
+            "Care Home Manager",
+            "Service Manager"
+        ],
+        salary: "£40,000–£55,000",
+        url: "https://inspirelondoncollege.co.uk/product/level-5-diploma-in-health-and-social-care-qualifi/"
+    },
+
+    {
+        id: "level5-extended",
+        level: 5,
+        title: "Qualifi – Level 5 Extended Diploma in Health and Social Care",
+        provider: "Qualifi",
+        requirement: "Level 4, HND, ND",
+        experienceRequirement: "No Experience",
+        duration: "12 Months",
+        roles: [
+            "Care Home Manager",
+            "Operations Manager",
+            "Registered Manager"
+        ],
+        salary: "£42,000–£60,000",
+        url: "https://inspirelondoncollege.co.uk/product/level-5-diploma-in-health-and-social-care-qualifi/"
+    },
+
+    {
+        id: "level5-management",
+        level: 5,
+        title: "NOCN Level 5 Diploma in Leadership and Management for Adult Care",
+        provider: "NOCN",
+        requirement: "Level 4, HND, ND",
+        experienceRequirement: "No Experience",
+        duration: "6 Months",
+        roles: [
+            "Registered Manager",
+            "Adult Care Manager",
+            "Care Home Manager"
+        ],
+        salary: "£42,000–£60,000",
+        url: "https://inspirelondoncollege.co.uk/product/level-5-diploma-in-health-and-social-care-qualifi/"
+    },
+
+    {
+        id: "level5-othm-management",
+        level: 5,
+        title: "OTHM – Level 5 Extended Diploma in Health and Social Care Management",
+        provider: "OTHM",
+        requirement: "Level 4, HND, ND",
+        experienceRequirement: "No Experience",
+        duration: "12 Months",
+        roles: [
+            "Health & Social Care Manager",
+            "Service Manager",
+            "Operations Manager"
+        ],
+        salary: "£42,000–£65,000",
+        url: "https://inspirelondoncollege.co.uk/product/level-5-diploma-in-health-and-social-care-qualifi/"
+    },
+
+
+    /* LEVEL 6 */
+
+    {
+        id: "level6-health-social",
+        level: 6,
+        title: "OTHM – Level 6 Diploma in Health and Social Care Management",
+        provider: "OTHM",
+        requirement: "HND, ND, Bachelor's",
+        experienceRequirement: "2 Years",
+        duration: "6 Months",
+        roles: [
+            "Regional Care Manager",
+            "Operations Manager",
+            "Healthcare Manager"
+        ],
+        salary: "£50,000–£75,000",
+        url: "https://inspirelondoncollege.co.uk/product/level-6-diploma-in-health-and-social-care-othm/"
+    },
+
+
+    /* LEVEL 7 */
+
+    {
+        id: "level7-health-social",
+        level: 7,
+        title: "OTHM – Level 7 Diploma in Health and Social Care Management",
+        provider: "OTHM",
+        requirement: "Bachelor's or Level 6 Equivalent",
+        experienceRequirement: "2 Years",
+        duration: "6 Months",
+        roles: [
+            "Director of Care",
+            "Regional Director",
+            "Healthcare Operations Director",
+            "Head of Adult Social Care"
+        ],
+        salary: "£60,000–£100,000+",
+        url: "https://inspirelondoncollege.co.uk/product/level-7-diploma-in-health-and-social-care-othm/"
+    }
+
+];
+
+
+/* =========================================================
+   STORE USER ANSWERS
+   ========================================================= */
+
+let userAnswers = {
+
+    qualification: "",
+    careerGoal: "",
+    careType: "",
+    experience: "",
+    progression: ""
+
+};
+
+let selectedQualification = null;
+
+
+/* =========================================================
+   QUESTION 1
+   ========================================================= */
+
+function selectQualification(level) {
+
+    userAnswers.qualification = level;
+
+    localStorage.setItem(
+        "qualificationLevel",
+        level
+    );
+
+    showQuestion(2);
+
+}
+
+
+/* =========================================================
+   QUESTION 2
+   ========================================================= */
+
+function selectCareerGoal(goal) {
+
+    userAnswers.careerGoal = goal;
+
+    localStorage.setItem(
+        "careerGoal",
+        goal
+    );
+
+    showQuestion(3);
+
+}
+
+
+/* =========================================================
+   QUESTION 3
+   ========================================================= */
+
+function selectCareType(type) {
+
+    userAnswers.careType = type;
+
+    localStorage.setItem(
+        "careType",
+        type
+    );
+
+    showQuestion(4);
+
+}
+
+
+/* =========================================================
+   QUESTION 4
+   ========================================================= */
+
+function selectExperience(experience) {
+
+    userAnswers.experience = experience;
+
+    localStorage.setItem(
+        "experience",
+        experience
+    );
+
+    showQuestion(5);
+
+}
+
+
+/* =========================================================
+   QUESTION 5
+   ========================================================= */
+
+function selectProgression(progression) {
+
+    userAnswers.progression = progression;
+
+    localStorage.setItem(
+        "progression",
+        progression
+    );
+
+    showRecommendation();
+
+}
+
+
+/* =========================================================
+   SHOW QUESTION
+   ========================================================= */
+
+function showQuestion(number) {
+
+    document
+        .querySelectorAll(".question")
+        .forEach(function(question) {
+
+            question.style.display = "none";
+
+        });
+
+    const question = document.getElementById(
+        "question" + number
+    );
+
+    if (question) {
+
+        question.style.display = "block";
+
+    }
+
+}
+
+
+/* =========================================================
+   GET CURRENT LEVEL NUMBER
+   ========================================================= */
+
+function getCurrentLevel() {
+
+    const level = userAnswers.qualification;
+
+    if (level === "level2") return 2;
+    if (level === "level3") return 3;
+    if (level === "level4") return 4;
+    if (level === "level5") return 5;
+    if (level === "level6") return 6;
+
+    return 0;
+
+}
+
+
+/* =========================================================
+   EXPERIENCE SCORE
+   ========================================================= */
+
+function getExperienceScore() {
+
+    switch (userAnswers.experience) {
+
+        case "none":
+            return 0;
+
+        case "less1":
+            return 1;
+
+        case "1to3":
+            return 2;
+
+        case "more3":
+            return 3;
+
+        case "professional":
+            return 4;
+
+        default:
+            return 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   RECOMMENDATION ENGINE
+   ========================================================= */
+
+function getRecommendation() {
+
+    const currentLevel = getCurrentLevel();
+
+    const experienceScore = getExperienceScore();
+
+    const goal = userAnswers.careerGoal;
+
+    const careType = userAnswers.careType;
+
+    const progression = userAnswers.progression;
+
+
+    /*
+     * LEVEL 0 / NEW TO HEALTH & SOCIAL CARE
+     */
+
+    if (currentLevel === 0) {
+
+        /*
+         * If the user wants management immediately,
+         * don't recommend a high-level qualification
+         * without the required progression.
+         */
+
+        return qualifications.find(
+            q => q.id === "level2-care"
+        );
+
+    }
+
+
+    /*
+     * LEVEL 2
+     */
+
+    if (currentLevel === 2) {
+
+        if (
+            goal === "senior" ||
+            progression === "higher" ||
+            progression === "management"
+        ) {
+
+            return qualifications.find(
+                q => q.id === "level3-health-social"
             );
 
-            showQuestion(1);
         }
 
+        return qualifications.find(
+            q => q.id === "level3-health-social"
+        );
 
-        /* =========================
-           QUESTION 2
-        ========================= */
+    }
 
-        function selectCareerGoal(goal) {
 
-            answers.careerGoal = goal;
+    /*
+     * LEVEL 3
+     */
 
-            localStorage.setItem(
-                "careerGoal",
-                goal
-            );
+    if (currentLevel === 3) {
 
-            showQuestion(2);
-        }
+        /*
+         * Management-oriented users move towards Level 4.
+         */
 
+        if (
+            goal === "management" ||
+            careType === "management" ||
+            progression === "management"
+        ) {
 
-        /* =========================
-           QUESTION 3
-        ========================= */
-
-        function selectCareType(type) {
-
-            answers.careType = type;
-
-            localStorage.setItem(
-                "careType",
-                type
-            );
-
-            showQuestion(3);
-        }
-
-
-        /* =========================
-           QUESTION 4
-        ========================= */
-
-        function selectExperience(experience) {
-
-            answers.experience = experience;
-
-            localStorage.setItem(
-                "experience",
-                experience
-            );
-
-            showQuestion(4);
-        }
-
-
-        /* =========================
-           QUESTION 5
-        ========================= */
-
-        function selectProgression(progression) {
-
-            answers.progression = progression;
-
-            localStorage.setItem(
-                "progression",
-                progression
-            );
-
-            showRecommendation();
-        }
-
-
-        /* =========================
-           SHOW QUESTION
-        ========================= */
-
-        function showQuestion(questionNumber) {
-
-            const questions =
-                document.querySelectorAll(".question");
-
-            questions.forEach(function(question) {
-
-                question.style.display = "none";
-
-            });
-
-            questions[questionNumber].style.display = "block";
-        }
-
-
-        /* =========================
-           RECOMMENDATION
-        ========================= */
-
-        function showRecommendation() {
-
-            const questions =
-                document.querySelectorAll(".question");
-
-            questions.forEach(function(question) {
-
-                question.style.display = "none";
-
-            });
-
-
-            let recommendation =
-                document.getElementById("recommendation");
-
-
-            let qualificationTitle =
-                "Health & Social Care Qualification";
-
-
-            let explanation =
-                "Based on your answers, a health and social care qualification could be a suitable next step for your career development.";
-
-
-            /* LEVEL-BASED RECOMMENDATION */
-
-            if (
-                answers.qualification === "new"
-            ) {
-
-                qualificationTitle =
-                    "Level 3 Health & Social Care Qualification";
-
-                explanation =
-                    "As you are new to health and social care, a Level 3 qualification could provide a strong foundation for starting or developing your career in care.";
-
-            }
-
-
-            else if (
-                answers.qualification === "level2"
-            ) {
-
-                qualificationTitle =
-                    "Level 3 Health & Social Care Qualification";
-
-                explanation =
-                    "With a Level 2 qualification, progressing to Level 3 could help you develop your knowledge and prepare for further career opportunities in health and social care.";
-
-            }
-
-
-            else if (
-                answers.qualification === "level3"
-            ) {
-
-                qualificationTitle =
-                    "Level 4 Health & Social Care Qualification";
-
-                explanation =
-                    "With a Level 3 qualification, progressing to Level 4 could help you build advanced knowledge and prepare for greater responsibility.";
-
-            }
-
-
-            else if (
-                answers.qualification === "level4"
-            ) {
-
-                qualificationTitle =
-                    "Level 5 Health & Social Care Qualification";
-
-                explanation =
-                    "With a Level 4 qualification, a Level 5 qualification could support your progression towards advanced roles and leadership responsibilities.";
-
-            }
-
-
-            else if (
-                answers.qualification === "level5"
-            ) {
-
-                qualificationTitle =
-                    "Advanced Health & Social Care Qualification";
-
-                explanation =
-                    "With a Level 5 qualification, you may be ready to develop advanced leadership, management or specialist knowledge.";
-
-            }
-
-
-            /* CARE MANAGEMENT OVERRIDE */
-
-            if (
-                answers.careerGoal ===
-                "Move into care management"
-            ) {
-
-                qualificationTitle =
-                    "Level 5 Health & Social Care Qualification";
-
-                explanation =
-                    "Because your goal is to move into care management, a Level 5 qualification may be a suitable progression route towards leadership and management responsibilities.";
-
-            }
-
-
-            recommendation.innerHTML = `
-
-                <h3>${qualificationTitle}</h3>
-
-                <p>${explanation}</p>
-
-                <p>
-                    <strong>Your career goal:</strong>
-                    ${answers.careerGoal}
-                </p>
-
-                <p>
-                    <strong>Your area of interest:</strong>
-                    ${answers.careType}
-                </p>
-
-                <p>
-                    <strong>Your experience:</strong>
-                    ${answers.experience}
-                </p>
-
-                <p>
-                    <strong>Your next goal:</strong>
-                    ${answers.progression}
-                </p>
-
-                <br>
-
-                <button onclick="viewQualification()">
-                    View Qualification
-                </button>
-
-            `;
-
-
-            questions[5].style.display = "block";
-        }
-
-
-        /* =========================
-           VIEW QUALIFICATION
-        ========================= */
-
-        function viewQualification() {
-
-            alert(
-                "We will connect this button to the relevant Inspire London College qualification page next."
+            return qualifications.find(
+                q => q.id === "level4-health-social"
             );
 
         }
 
+        /*
+         * Users wanting higher qualification
+         */
 
-        /* =========================
-           RESTART
-        ========================= */
+        if (
+            progression === "higher" ||
+            goal === "higher"
+        ) {
 
-        function restartFinder() {
-
-            localStorage.removeItem(
-                "qualificationLevel"
+            return qualifications.find(
+                q => q.id === "level4-health-social"
             );
-
-            localStorage.removeItem(
-                "careerGoal"
-            );
-
-            localStorage.removeItem(
-                "careType"
-            );
-
-            localStorage.removeItem(
-                "experience"
-            );
-
-            localStorage.removeItem(
-                "progression"
-            );
-
-            location.reload();
 
         }
 
-    </script>
+        return qualifications.find(
+            q => q.id === "level4-health-social"
+        );
+
+    }
+
+
+    /*
+     * LEVEL 4
+     */
+
+    if (currentLevel === 4) {
+
+        /*
+         * Management is the strongest Level 5 pathway.
+         */
+
+        if (
+            goal === "management" ||
+            careType === "management" ||
+            progression === "management"
+        ) {
+
+            return qualifications.find(
+                q => q.id === "level5-health-social"
+            );
+
+        }
+
+        return qualifications.find(
+            q => q.id === "level5-health-social"
+        );
+
+    }
+
+
+    /*
+     * LEVEL 5
+     */
+
+    if (currentLevel === 5) {
+
+        /*
+         * Experienced Level 5 users wanting
+         * higher management can progress to Level 6.
+         */
+
+        if (
+            experienceScore >= 2 &&
+            (
+                goal === "management" ||
+                progression === "higher" ||
+                progression === "management"
+            )
+        ) {
+
+            return qualifications.find(
+                q => q.id === "level6-health-social"
+            );
+
+        }
+
+        /*
+         * Adult social care management
+         */
+
+        if (
+            careType === "adult" ||
+            careType === "management" ||
+            goal === "management"
+        ) {
+
+            return qualifications.find(
+                q => q.id === "level5-management"
+            );
+
+        }
+
+        return qualifications.find(
+            q => q.id === "level5-health-social"
+        );
+
+    }
+
+
+    /*
+     * LEVEL 6
+     */
+
+    if (currentLevel === 6) {
+
+        /*
+         * Level 6 users with substantial experience
+         * can be directed towards Level 7.
+         */
+
+        if (
+            experienceScore >= 2 &&
+            (
+                goal === "management" ||
+                goal === "higher" ||
+                progression === "higher" ||
+                progression === "management"
+            )
+        ) {
+
+            return qualifications.find(
+                q => q.id === "level7-health-social"
+            );
+
+        }
+
+        return qualifications.find(
+            q => q.id === "level6-health-social"
+        );
+
+    }
+
+
+    /*
+     * FALLBACK
+     */
+
+    return qualifications.find(
+        q => q.id === "level3-health-social"
+    );
+
+}
+
+
+/* =========================================================
+   DISPLAY RECOMMENDATION
+   ========================================================= */
+
+function showRecommendation() {
+
+    selectedQualification = getRecommendation();
+
+    if (!selectedQualification) {
+
+        alert(
+            "We could not find a suitable qualification."
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Hide all questions
+     */
+
+    document
+        .querySelectorAll(".question")
+        .forEach(function(question) {
+
+            question.style.display = "none";
+
+        });
+
+
+    /*
+     * Create roles list
+     */
+
+    const rolesHTML =
+        selectedQualification.roles
+            .map(function(role) {
+
+                return "<li>" + role + "</li>";
+
+            })
+            .join("");
+
+
+    /*
+     * Recommendation content
+     */
+
+    const recommendationHTML = `
+
+        <div class="recommendation-card">
+
+            <h3>
+                ${selectedQualification.title}
+            </h3>
+
+            <p>
+                <strong>Awarding Body:</strong>
+                ${selectedQualification.provider}
+            </p>
+
+            <p>
+                <strong>Entry Requirement:</strong>
+                ${selectedQualification.requirement}
+            </p>
+
+            <p>
+                <strong>Typical Duration:</strong>
+                ${selectedQualification.duration}
+            </p>
+
+            <p>
+                <strong>Experience Requirement:</strong>
+                ${selectedQualification.experienceRequirement}
+            </p>
+
+            <p>
+                <strong>Indicative Salary Range:</strong>
+                ${selectedQualification.salary}
+            </p>
+
+            <h4>Potential Career Roles</h4>
+
+            <ul>
+                ${rolesHTML}
+            </ul>
+
+            <p class="recommendation-note">
+                Based on the answers you provided, this qualification
+                is a suitable progression option for your current
+                career goals and qualification level.
+            </p>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "recommendation"
+    ).innerHTML = recommendationHTML;
+
+
+    /*
+     * Show results
+     */
+
+    document.getElementById(
+        "results"
+    ).style.display = "block";
+
+
+    /*
+     * Scroll to results
+     */
+
+    document.getElementById(
+        "results"
+    ).scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================================
+   VIEW QUALIFICATION
+   ========================================================= */
+
+function viewQualification() {
+
+    if (
+        selectedQualification &&
+        selectedQualification.url
+    ) {
+
+        window.open(
+            selectedQualification.url,
+            "_blank"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   RESTART FINDER
+   ========================================================= */
+
+function restartFinder() {
+
+    /*
+     * Clear stored answers
+     */
+
+    localStorage.removeItem(
+        "qualificationLevel"
+    );
+
+    localStorage.removeItem(
+        "careerGoal"
+    );
+
+    localStorage.removeItem(
+        "careType"
+    );
+
+    localStorage.removeItem(
+        "experience"
+    );
+
+    localStorage.removeItem(
+        "progression"
+    );
+
+
+    /*
+     * Reset answers
+     */
+
+    userAnswers = {
+
+        qualification: "",
+        careerGoal: "",
+        careType: "",
+        experience: "",
+        progression: ""
+
+    };
+
+
+    selectedQualification = null;
+
+
+    /*
+     * Hide results
+     */
+
+    document.getElementById(
+        "results"
+    ).style.display = "none";
+
+
+    /*
+     * Clear recommendation
+     */
+
+    document.getElementById(
+        "recommendation"
+    ).innerHTML = "";
+
+
+    /*
+     * Return to first question
+     */
+
+    showQuestion(1);
+
+
+    /*
+     * Scroll to top
+     */
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+</script>
 
 </body>
 </html>
