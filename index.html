@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Health & Social Care Career & Qualification Finder</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,49 +16,475 @@
     <p>
         Find the right health and social care qualification for your career goals.
     </p>
+
+
+    <!-- QUESTION 1 -->
     <div class="question">
-    <h2>What is your current qualification level?</h2>
 
-    <button onclick="selectQualification('new')">I'm new to health & social care</button>
-<button onclick="selectQualification('level2')">Level 2</button>
-<button onclick="selectQualification('level3')">Level 3</button>
-<button onclick="selectQualification('level4')">Level 4</button>
-<button onclick="selectQualification('level5')">Level 5</button>
-</div>
-<div class="question">
-    <h2>What is your main career goal?</h2>
+        <h2>What is your current qualification level?</h2>
 
-    <button onclick="selectCareerGoal('Start a career in care')">
-        Start a career in care
-    </button>
+        <button onclick="selectQualification('new')">
+            I'm new to health & social care
+        </button>
 
-    <button onclick="selectCareerGoal('Become a senior care worker')">
-        Become a senior care worker
-    </button>
+        <button onclick="selectQualification('level2')">
+            Level 2
+        </button>
 
-    <button onclick="selectCareerGoal('Move into care management')">
-        Move into care management
-    </button>
+        <button onclick="selectQualification('level3')">
+            Level 3
+        </button>
 
-    <button onclick="selectCareerGoal('Develop my existing skills')">
-        Develop my existing skills
-    </button>
+        <button onclick="selectQualification('level4')">
+            Level 4
+        </button>
 
-    <button onclick="selectCareerGoal('Progress to a higher qualification')">
-        Progress to a higher qualification
-    </button>
-</div>
+        <button onclick="selectQualification('level5')">
+            Level 5
+        </button>
+
+    </div>
+
+
+    <!-- QUESTION 2 -->
     <div class="question">
-    <h2>What type of care are you interested in?</h2>
 
-    <button>Adult social care</button>
-    <button>Health and social care</button>
-    <button>Care management</button>
-    <button>Children and young people</button>
-    <button>Not sure yet</button>
-</div>
-    
-<script src="script.js"></script>
-    
+        <h2>What is your main career goal?</h2>
+
+        <button onclick="selectCareerGoal('Start a career in care')">
+            Start a career in care
+        </button>
+
+        <button onclick="selectCareerGoal('Become a senior care worker')">
+            Become a senior care worker
+        </button>
+
+        <button onclick="selectCareerGoal('Move into care management')">
+            Move into care management
+        </button>
+
+        <button onclick="selectCareerGoal('Develop my existing skills')">
+            Develop my existing skills
+        </button>
+
+        <button onclick="selectCareerGoal('Progress to a higher qualification')">
+            Progress to a higher qualification
+        </button>
+
+    </div>
+
+
+    <!-- QUESTION 3 -->
+    <div class="question">
+
+        <h2>What area of care are you interested in?</h2>
+
+        <button onclick="selectCareType('Adult social care')">
+            Adult social care
+        </button>
+
+        <button onclick="selectCareType('Health and social care')">
+            Health and social care
+        </button>
+
+        <button onclick="selectCareType('Care management')">
+            Care management
+        </button>
+
+        <button onclick="selectCareType('Children and young people')">
+            Children and young people
+        </button>
+
+        <button onclick="selectCareType('Not sure yet')">
+            Not sure yet
+        </button>
+
+    </div>
+
+
+    <!-- QUESTION 4 -->
+    <div class="question">
+
+        <h2>How much experience do you have in health & social care?</h2>
+
+        <button onclick="selectExperience('No experience')">
+            No experience
+        </button>
+
+        <button onclick="selectExperience('Less than 1 year')">
+            Less than 1 year
+        </button>
+
+        <button onclick="selectExperience('1 to 3 years')">
+            1 to 3 years
+        </button>
+
+        <button onclick="selectExperience('More than 3 years')">
+            More than 3 years
+        </button>
+
+        <button onclick="selectExperience('Experienced professional')">
+            I'm an experienced professional
+        </button>
+
+    </div>
+
+
+    <!-- QUESTION 5 -->
+    <div class="question">
+
+        <h2>What would you like to do next?</h2>
+
+        <button onclick="selectProgression('Start my career')">
+            Start my career
+        </button>
+
+        <button onclick="selectProgression('Gain a recognised qualification')">
+            Gain a recognised qualification
+        </button>
+
+        <button onclick="selectProgression('Progress to a higher level')">
+            Progress to a higher level
+        </button>
+
+        <button onclick="selectProgression('Move into management')">
+            Move into management
+        </button>
+
+        <button onclick="selectProgression('Improve my existing skills')">
+            Improve my existing skills
+        </button>
+
+    </div>
+
+
+    <!-- RESULTS -->
+    <div class="question" id="results">
+
+        <h2>Your Recommended Qualification</h2>
+
+        <div id="recommendation"></div>
+
+        <button onclick="restartFinder()">
+            Start Again
+        </button>
+
+    </div>
+
+
+    <script>
+
+        /* =========================
+           USER ANSWERS
+        ========================= */
+
+        let answers = {
+            qualification: "",
+            careerGoal: "",
+            careType: "",
+            experience: "",
+            progression: ""
+        };
+
+
+        /* =========================
+           QUESTION 1
+        ========================= */
+
+        function selectQualification(level) {
+
+            answers.qualification = level;
+
+            localStorage.setItem(
+                "qualificationLevel",
+                level
+            );
+
+            showQuestion(1);
+        }
+
+
+        /* =========================
+           QUESTION 2
+        ========================= */
+
+        function selectCareerGoal(goal) {
+
+            answers.careerGoal = goal;
+
+            localStorage.setItem(
+                "careerGoal",
+                goal
+            );
+
+            showQuestion(2);
+        }
+
+
+        /* =========================
+           QUESTION 3
+        ========================= */
+
+        function selectCareType(type) {
+
+            answers.careType = type;
+
+            localStorage.setItem(
+                "careType",
+                type
+            );
+
+            showQuestion(3);
+        }
+
+
+        /* =========================
+           QUESTION 4
+        ========================= */
+
+        function selectExperience(experience) {
+
+            answers.experience = experience;
+
+            localStorage.setItem(
+                "experience",
+                experience
+            );
+
+            showQuestion(4);
+        }
+
+
+        /* =========================
+           QUESTION 5
+        ========================= */
+
+        function selectProgression(progression) {
+
+            answers.progression = progression;
+
+            localStorage.setItem(
+                "progression",
+                progression
+            );
+
+            showRecommendation();
+        }
+
+
+        /* =========================
+           SHOW QUESTION
+        ========================= */
+
+        function showQuestion(questionNumber) {
+
+            const questions =
+                document.querySelectorAll(".question");
+
+            questions.forEach(function(question) {
+
+                question.style.display = "none";
+
+            });
+
+            questions[questionNumber].style.display = "block";
+        }
+
+
+        /* =========================
+           RECOMMENDATION
+        ========================= */
+
+        function showRecommendation() {
+
+            const questions =
+                document.querySelectorAll(".question");
+
+            questions.forEach(function(question) {
+
+                question.style.display = "none";
+
+            });
+
+
+            let recommendation =
+                document.getElementById("recommendation");
+
+
+            let qualificationTitle =
+                "Health & Social Care Qualification";
+
+
+            let explanation =
+                "Based on your answers, a health and social care qualification could be a suitable next step for your career development.";
+
+
+            /* LEVEL-BASED RECOMMENDATION */
+
+            if (
+                answers.qualification === "new"
+            ) {
+
+                qualificationTitle =
+                    "Level 3 Health & Social Care Qualification";
+
+                explanation =
+                    "As you are new to health and social care, a Level 3 qualification could provide a strong foundation for starting or developing your career in care.";
+
+            }
+
+
+            else if (
+                answers.qualification === "level2"
+            ) {
+
+                qualificationTitle =
+                    "Level 3 Health & Social Care Qualification";
+
+                explanation =
+                    "With a Level 2 qualification, progressing to Level 3 could help you develop your knowledge and prepare for further career opportunities in health and social care.";
+
+            }
+
+
+            else if (
+                answers.qualification === "level3"
+            ) {
+
+                qualificationTitle =
+                    "Level 4 Health & Social Care Qualification";
+
+                explanation =
+                    "With a Level 3 qualification, progressing to Level 4 could help you build advanced knowledge and prepare for greater responsibility.";
+
+            }
+
+
+            else if (
+                answers.qualification === "level4"
+            ) {
+
+                qualificationTitle =
+                    "Level 5 Health & Social Care Qualification";
+
+                explanation =
+                    "With a Level 4 qualification, a Level 5 qualification could support your progression towards advanced roles and leadership responsibilities.";
+
+            }
+
+
+            else if (
+                answers.qualification === "level5"
+            ) {
+
+                qualificationTitle =
+                    "Advanced Health & Social Care Qualification";
+
+                explanation =
+                    "With a Level 5 qualification, you may be ready to develop advanced leadership, management or specialist knowledge.";
+
+            }
+
+
+            /* CARE MANAGEMENT OVERRIDE */
+
+            if (
+                answers.careerGoal ===
+                "Move into care management"
+            ) {
+
+                qualificationTitle =
+                    "Level 5 Health & Social Care Qualification";
+
+                explanation =
+                    "Because your goal is to move into care management, a Level 5 qualification may be a suitable progression route towards leadership and management responsibilities.";
+
+            }
+
+
+            recommendation.innerHTML = `
+
+                <h3>${qualificationTitle}</h3>
+
+                <p>${explanation}</p>
+
+                <p>
+                    <strong>Your career goal:</strong>
+                    ${answers.careerGoal}
+                </p>
+
+                <p>
+                    <strong>Your area of interest:</strong>
+                    ${answers.careType}
+                </p>
+
+                <p>
+                    <strong>Your experience:</strong>
+                    ${answers.experience}
+                </p>
+
+                <p>
+                    <strong>Your next goal:</strong>
+                    ${answers.progression}
+                </p>
+
+                <br>
+
+                <button onclick="viewQualification()">
+                    View Qualification
+                </button>
+
+            `;
+
+
+            questions[5].style.display = "block";
+        }
+
+
+        /* =========================
+           VIEW QUALIFICATION
+        ========================= */
+
+        function viewQualification() {
+
+            alert(
+                "We will connect this button to the relevant Inspire London College qualification page next."
+            );
+
+        }
+
+
+        /* =========================
+           RESTART
+        ========================= */
+
+        function restartFinder() {
+
+            localStorage.removeItem(
+                "qualificationLevel"
+            );
+
+            localStorage.removeItem(
+                "careerGoal"
+            );
+
+            localStorage.removeItem(
+                "careType"
+            );
+
+            localStorage.removeItem(
+                "experience"
+            );
+
+            localStorage.removeItem(
+                "progression"
+            );
+
+            location.reload();
+
+        }
+
+    </script>
+
 </body>
 </html>
