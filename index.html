@@ -1,201 +1,2237 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Health & Social Care Career & Qualification Finder</title>
+    <title>Health & Social Care Career & Qualification Finder | Inspire London College</title>
 
-    <meta name="description" content="Find the right health and social care qualification based on your experience, career goals and current qualification level.">
+    <meta
+        name="description"
+        content="Find the right health and social care qualification based on your current level, experience, career goals and progression plans."
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#0056a6">
+
+    <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4f9ff 0%,
+                    #ffffff 45%,
+                    #eef7ff 100%
+                );
+
+            color: #172b4d;
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           BACKGROUND DECORATION
+        ===================================================== */
+
+        body::before {
+            content: "";
+            position: fixed;
+
+            width: 450px;
+            height: 450px;
+
+            border-radius: 50%;
+
+            background: rgba(0, 93, 170, 0.07);
+
+            top: -180px;
+            left: -150px;
+
+            animation: floatOne 9s ease-in-out infinite;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            width: 400px;
+            height: 400px;
+
+            border-radius: 50%;
+
+            background: rgba(0, 163, 224, 0.06);
+
+            right: -150px;
+            bottom: -160px;
+
+            animation: floatTwo 11s ease-in-out infinite;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+
+        @keyframes floatOne {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(30px, 25px);
+            }
+        }
+
+
+        @keyframes floatTwo {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(-30px, -25px);
+            }
+        }
+
+
+        /* =====================================================
+           MAIN CONTAINER
+        ===================================================== */
+
+        .finder-wrapper {
+
+            width: 100%;
+
+            max-width: 980px;
+
+            margin: 0 auto;
+
+            padding: 30px 18px 70px;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .finder-header {
+
+            text-align: center;
+
+            padding: 20px 10px 30px;
+        }
+
+
+        .brand-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            background: #ffffff;
+
+            color: #0056a6;
+
+            padding: 9px 16px;
+
+            border-radius: 50px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 25px rgba(0, 70, 140, 0.08);
+
+            margin-bottom: 18px;
+
+            border: 1px solid rgba(0, 86, 166, 0.1);
+        }
+
+
+        .brand-dot {
+
+            width: 8px;
+
+            height: 8px;
+
+            background: #00a3e0;
+
+            border-radius: 50%;
+
+            animation: pulseDot 1.8s infinite;
+        }
+
+
+        @keyframes pulseDot {
+
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 163, 224, 0.5);
+            }
+
+            70% {
+                box-shadow: 0 0 0 8px rgba(0, 163, 224, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 163, 224, 0);
+            }
+        }
+
+
+        .finder-header h1 {
+
+            font-size: clamp(30px, 5vw, 48px);
+
+            line-height: 1.12;
+
+            color: #064f91;
+
+            font-weight: 800;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .finder-header p {
+
+            max-width: 650px;
+
+            margin: 0 auto;
+
+            color: #60758f;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           MAIN CARD
+        ===================================================== */
+
+        .finder-card {
+
+            background: rgba(255, 255, 255, 0.94);
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 25px 70px rgba(0, 58, 120, 0.12);
+
+            border: 1px solid rgba(0, 86, 166, 0.08);
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+
+        .finder-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 5px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #0056a6,
+                    #008ed6,
+                    #00a3e0
+                );
+        }
+
+
+        /* =====================================================
+           PROGRESS AREA
+        ===================================================== */
+
+        .progress-area {
+
+            padding: 25px 30px 20px;
+
+            background: #f8fbff;
+
+            border-bottom: 1px solid #e8f0f7;
+        }
+
+
+        .progress-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 12px;
+        }
+
+
+        .progress-label {
+
+            color: #4d6783;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .progress-number {
+
+            color: #0056a6;
+
+            font-size: 13px;
+
+            font-weight: 800;
+        }
+
+
+        .progress-track {
+
+            height: 8px;
+
+            width: 100%;
+
+            background: #e5eef7;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        .progress-bar {
+
+            height: 100%;
+
+            width: 20%;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #0056a6,
+                    #00a3e0
+                );
+
+            transition: width 0.5s ease;
+        }
+
+
+        .step-dots {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-top: 15px;
+        }
+
+
+        .step-dot {
+
+            width: 10px;
+
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #d5e3ef;
+
+            transition: all 0.3s ease;
+        }
+
+
+        .step-dot.active {
+
+            background: #0056a6;
+
+            transform: scale(1.35);
+
+            box-shadow:
+                0 0 0 4px rgba(0, 86, 166, 0.12);
+        }
+
+
+        /* =====================================================
+           QUESTION AREA
+        ===================================================== */
+
+        .question-area {
+
+            padding: 42px 38px 45px;
+        }
+
+
+        .question {
+
+            animation: questionIn 0.45s ease;
+        }
+
+
+        @keyframes questionIn {
+
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+
+        .question-number {
+
+            display: inline-block;
+
+            color: #008ed6;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            margin-bottom: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
+        }
+
+
+        .question h2 {
+
+            color: #172b4d;
+
+            font-size: clamp(24px, 4vw, 32px);
+
+            line-height: 1.25;
+
+            margin-bottom: 10px;
+
+            font-weight: 800;
+        }
+
+
+        .question-description {
+
+            color: #708198;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* =====================================================
+           ANSWER GRID
+        ===================================================== */
+
+        .answers {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 14px;
+        }
+
+
+        .answer-button {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            text-align: left;
+
+            width: 100%;
+
+            min-height: 76px;
+
+            padding: 17px 18px;
+
+            background: #ffffff;
+
+            border: 2px solid #e3edf5;
+
+            border-radius: 16px;
+
+            color: #24415f;
+
+            font-size: 15px;
+
+            font-weight: 650;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                background 0.25s ease;
+
+            overflow: hidden;
+        }
+
+
+        .answer-button::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            width: 4px;
+
+            background: transparent;
+
+            transition: background 0.25s ease;
+        }
+
+
+        .answer-icon {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 38px;
+
+            height: 38px;
+
+            min-width: 38px;
+
+            margin-right: 13px;
+
+            border-radius: 11px;
+
+            background: #edf6fd;
+
+            color: #0056a6;
+
+            font-size: 17px;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .answer-text {
+
+            flex: 1;
+
+            line-height: 1.35;
+        }
+
+
+        .answer-arrow {
+
+            color: #9ab1c6;
+
+            font-size: 20px;
+
+            margin-left: 10px;
+
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease;
+        }
+
+
+        .answer-button:hover {
+
+            transform: translateY(-3px);
+
+            border-color: #78b9df;
+
+            box-shadow:
+                0 12px 30px rgba(0, 86, 166, 0.1);
+
+            background: #fbfdff;
+        }
+
+
+        .answer-button:hover::before {
+
+            background: #00a3e0;
+        }
+
+
+        .answer-button:hover .answer-icon {
+
+            background: #0056a6;
+
+            color: #ffffff;
+
+            transform: scale(1.06);
+        }
+
+
+        .answer-button:hover .answer-arrow {
+
+            color: #0056a6;
+
+            transform: translateX(4px);
+        }
+
+
+        .answer-button:active {
+
+            transform: scale(0.98);
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        .navigation {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 30px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid #edf2f6;
+        }
+
+
+        .back-button {
+
+            border: none;
+
+            background: transparent;
+
+            color: #60758f;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            padding: 10px 0;
+
+            transition: color 0.2s ease;
+        }
+
+
+        .back-button:hover {
+
+            color: #0056a6;
+        }
+
+
+        .secure-text {
+
+            font-size: 12px;
+
+            color: #91a2b3;
+        }
+
+
+        /* =====================================================
+           RESULTS
+        ===================================================== */
+
+        #results {
+
+            animation: resultIn 0.7s ease;
+        }
+
+
+        @keyframes resultIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        .result-header {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .success-icon {
+
+            width: 68px;
+
+            height: 68px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0056a6,
+                    #00a3e0
+                );
+
+            color: #ffffff;
+
+            font-size: 28px;
+
+            box-shadow:
+                0 12px 30px rgba(0, 86, 166, 0.25);
+
+            animation: successPop 0.7s cubic-bezier(.17,.67,.35,1.4);
+        }
+
+
+        @keyframes successPop {
+
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+
+        .result-header h2 {
+
+            color: #064f91;
+
+            font-size: clamp(26px, 4vw, 36px);
+
+            margin-bottom: 8px;
+        }
+
+
+        .result-header p {
+
+            color: #708198;
+
+            font-size: 15px;
+        }
+
+
+        /* =====================================================
+           RECOMMENDATION CARD
+        ===================================================== */
+
+        .recommendation-card {
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #f7fbff
+                );
+
+            border: 1px solid #dbeaf5;
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 18px 45px rgba(0, 70, 130, 0.1);
+
+            overflow: hidden;
+        }
+
+
+        .recommendation-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+
+            height: 180px;
+
+            border-radius: 50%;
+
+            background: rgba(0, 163, 224, 0.06);
+
+            right: -70px;
+
+            top: -70px;
+
+            pointer-events: none;
+        }
+
+
+        .recommendation-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            background: #e8f5fd;
+
+            color: #0056a6;
+
+            padding: 7px 12px;
+
+            border-radius: 50px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            margin-bottom: 14px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.4px;
+        }
+
+
+        .recommendation-card h3 {
+
+            position: relative;
+
+            z-index: 1;
+
+            color: #064f91;
+
+            font-size: clamp(23px, 4vw, 31px);
+
+            line-height: 1.3;
+
+            margin-bottom: 20px;
+
+            max-width: 780px;
+        }
+
+
+        .qualification-meta {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 12px;
+
+            margin-bottom: 24px;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        .meta-item {
+
+            background: #ffffff;
+
+            border: 1px solid #e5eef5;
+
+            border-radius: 13px;
+
+            padding: 14px 15px;
+        }
+
+
+        .meta-label {
+
+            display: block;
+
+            color: #8a9bad;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .meta-value {
+
+            display: block;
+
+            color: #274664;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            line-height: 1.4;
+        }
+
+
+        .roles-heading {
+
+            color: #284865;
+
+            font-size: 15px;
+
+            margin-bottom: 11px;
+
+            font-weight: 800;
+        }
+
+
+        .roles-list {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            list-style: none;
+
+            margin-bottom: 23px;
+        }
+
+
+        .role-tag {
+
+            background: #eef7fd;
+
+            color: #126497;
+
+            border: 1px solid #d8ecf8;
+
+            border-radius: 50px;
+
+            padding: 8px 12px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .recommendation-note {
+
+            background: #f1f7fb;
+
+            border-left: 4px solid #00a3e0;
+
+            border-radius: 8px;
+
+            padding: 13px 15px;
+
+            color: #5c7187;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-top: 10px;
+        }
+
+
+        /* =====================================================
+           RESULT BUTTONS
+        ===================================================== */
+
+        .result-actions {
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-top: 24px;
+        }
+
+
+        .primary-button {
+
+            flex: 1;
+
+            min-height: 54px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0056a6,
+                    #008ed6
+                );
+
+            color: #ffffff;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 12px 25px rgba(0, 86, 166, 0.22);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .primary-button:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 17px 35px rgba(0, 86, 166, 0.28);
+        }
+
+
+        .secondary-button {
+
+            min-height: 54px;
+
+            padding: 0 22px;
+
+            border-radius: 13px;
+
+            border: 2px solid #dce9f3;
+
+            background: #ffffff;
+
+            color: #536b83;
+
+            font-size: 14px;
+
+            font-weight: 750;
+
+            cursor: pointer;
+
+            transition:
+                all 0.25s ease;
+        }
+
+
+        .secondary-button:hover {
+
+            border-color: #9bc8e4;
+
+            color: #0056a6;
+
+            background: #f8fcff;
+        }
+
+
+        /* =====================================================
+           FOOTER NOTE
+        ===================================================== */
+
+        .finder-footer {
+
+            text-align: center;
+
+            padding-top: 22px;
+
+            color: #92a1af;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .finder-wrapper {
+
+                padding:
+                    15px
+                    12px
+                    45px;
+            }
+
+
+            .finder-header {
+
+                padding:
+                    18px
+                    5px
+                    22px;
+            }
+
+
+            .finder-header h1 {
+
+                font-size: 31px;
+
+                letter-spacing: -0.7px;
+            }
+
+
+            .finder-header p {
+
+                font-size: 14px;
+
+                line-height: 1.6;
+            }
+
+
+            .finder-card {
+
+                border-radius: 18px;
+            }
+
+
+            .progress-area {
+
+                padding:
+                    20px
+                    18px
+                    17px;
+            }
+
+
+            .question-area {
+
+                padding:
+                    30px
+                    18px
+                    28px;
+            }
+
+
+            .answers {
+
+                grid-template-columns: 1fr;
+
+                gap: 11px;
+            }
+
+
+            .answer-button {
+
+                min-height: 70px;
+
+                padding: 14px;
+            }
+
+
+            .answer-icon {
+
+                width: 35px;
+
+                height: 35px;
+
+                min-width: 35px;
+            }
+
+
+            .qualification-meta {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .recommendation-card {
+
+                padding: 22px 18px;
+            }
+
+
+            .result-actions {
+
+                flex-direction: column;
+            }
+
+
+            .secondary-button {
+
+                width: 100%;
+            }
+
+
+            .navigation {
+
+                align-items: flex-start;
+            }
+
+
+            .secure-text {
+
+                text-align: right;
+
+                max-width: 150px;
+            }
+
+        }
+
+
+        /* =====================================================
+           ACCESSIBILITY
+        ===================================================== */
+
+        button:focus-visible {
+
+            outline: 3px solid rgba(0, 163, 224, 0.35);
+
+            outline-offset: 3px;
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration: 0.01ms !important;
+
+                animation-iteration-count: 1 !important;
+
+                scroll-behavior: auto !important;
+
+                transition-duration: 0.01ms !important;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<div class="container">
 
-    <h1>Health & Social Care Career & Qualification Finder</h1>
-
-    <p class="intro">
-        Answer a few simple questions to find a health and social care qualification
-        that matches your experience, career goals and progression plans.
-    </p>
+<div class="finder-wrapper">
 
 
-    <!-- QUESTION 1 -->
-    <div class="question" id="question1">
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
 
-        <h2>1. What is your current qualification level?</h2>
+    <header class="finder-header">
 
-        <button onclick="selectQualification('new')">
-            I'm new to health & social care
-        </button>
+        <div class="brand-badge">
 
-        <button onclick="selectQualification('level2')">
-            Level 2
-        </button>
+            <span class="brand-dot"></span>
 
-        <button onclick="selectQualification('level3')">
-            Level 3
-        </button>
+            Inspire London College
 
-        <button onclick="selectQualification('level4')">
-            Level 4
-        </button>
-
-        <button onclick="selectQualification('level5')">
-            Level 5
-        </button>
-
-        <button onclick="selectQualification('level6')">
-            Level 6
-        </button>
-
-    </div>
+        </div>
 
 
-    <!-- QUESTION 2 -->
-    <div class="question" id="question2" style="display:none;">
-
-        <h2>2. What is your main career goal?</h2>
-
-        <button onclick="selectCareerGoal('start')">
-            Start a career in care
-        </button>
-
-        <button onclick="selectCareerGoal('senior')">
-            Become a senior care worker
-        </button>
-
-        <button onclick="selectCareerGoal('management')">
-            Move into care management
-        </button>
-
-        <button onclick="selectCareerGoal('skills')">
-            Develop my existing skills
-        </button>
-
-        <button onclick="selectCareerGoal('higher')">
-            Progress to a higher qualification
-        </button>
-
-    </div>
+        <h1>
+            Health & Social Care
+            <br>
+            Career & Qualification Finder
+        </h1>
 
 
-    <!-- QUESTION 3 -->
-    <div class="question" id="question3" style="display:none;">
+        <p>
+            Answer five simple questions and discover a qualification
+            that matches your experience, career goals and progression plans.
+        </p>
 
-        <h2>3. What area of care are you interested in?</h2>
-
-        <button onclick="selectCareType('adult')">
-            Adult social care
-        </button>
-
-        <button onclick="selectCareType('health')">
-            Health and social care
-        </button>
-
-        <button onclick="selectCareType('management')">
-            Care management
-        </button>
-
-        <button onclick="selectCareType('children')">
-            Children and young people
-        </button>
-
-        <button onclick="selectCareType('unsure')">
-            Not sure yet
-        </button>
-
-    </div>
+    </header>
 
 
-    <!-- QUESTION 4 -->
-    <div class="question" id="question4" style="display:none;">
 
-        <h2>4. How much experience do you have in health & social care?</h2>
+    <!-- =====================================================
+         FINDER CARD
+    ===================================================== -->
 
-        <button onclick="selectExperience('none')">
-            No experience
-        </button>
-
-        <button onclick="selectExperience('less1')">
-            Less than 1 year
-        </button>
-
-        <button onclick="selectExperience('1to3')">
-            1 to 3 years
-        </button>
-
-        <button onclick="selectExperience('more3')">
-            More than 3 years
-        </button>
-
-        <button onclick="selectExperience('professional')">
-            I'm an experienced professional
-        </button>
-
-    </div>
+    <main class="finder-card">
 
 
-    <!-- QUESTION 5 -->
-    <div class="question" id="question5" style="display:none;">
+        <!-- PROGRESS -->
 
-        <h2>5. What would you like to do next?</h2>
+        <div
+            class="progress-area"
+            id="progressArea"
+        >
 
-        <button onclick="selectProgression('career')">
-            Start my career
-        </button>
+            <div class="progress-top">
 
-        <button onclick="selectProgression('qualification')">
-            Gain a recognised qualification
-        </button>
+                <span class="progress-label">
+                    Your journey
+                </span>
 
-        <button onclick="selectProgression('higher')">
-            Progress to a higher level
-        </button>
+                <span
+                    class="progress-number"
+                    id="progressNumber"
+                >
+                    Step 1 of 5
+                </span>
 
-        <button onclick="selectProgression('management')">
-            Move into management
-        </button>
-
-        <button onclick="selectProgression('skills')">
-            Improve my existing skills
-        </button>
-
-    </div>
+            </div>
 
 
-    <!-- RESULTS -->
-    <div id="results" style="display:none;">
+            <div class="progress-track">
 
-        <h2>Your Recommended Qualification</h2>
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                ></div>
 
-        <div id="recommendation"></div>
+            </div>
 
-        <button id="viewQualificationButton" onclick="viewQualification()">
-            View Qualification
-        </button>
 
-        <button onclick="restartFinder()">
-            Start Again
-        </button>
+            <div class="step-dots">
 
-    </div>
+                <span
+                    class="step-dot active"
+                    id="dot1"
+                ></span>
+
+                <span
+                    class="step-dot"
+                    id="dot2"
+                ></span>
+
+                <span
+                    class="step-dot"
+                    id="dot3"
+                ></span>
+
+                <span
+                    class="step-dot"
+                    id="dot4"
+                ></span>
+
+                <span
+                    class="step-dot"
+                    id="dot5"
+                ></span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUESTION AREA -->
+
+        <div class="question-area">
+
+
+            <!-- =================================================
+                 QUESTION 1
+            ================================================= -->
+
+            <div
+                class="question"
+                id="question1"
+            >
+
+                <span class="question-number">
+                    Question 01
+                </span>
+
+                <h2>
+                    What is your current qualification level?
+                </h2>
+
+                <p class="question-description">
+                    Tell us where you are currently starting from.
+                </p>
+
+
+                <div class="answers">
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectQualification('new')"
+                    >
+
+                        <span class="answer-icon">
+                            🌱
+                        </span>
+
+                        <span class="answer-text">
+                            I'm new to health & social care
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectQualification('level2')"
+                    >
+
+                        <span class="answer-icon">
+                            2
+                        </span>
+
+                        <span class="answer-text">
+                            Level 2
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectQualification('level3')"
+                    >
+
+                        <span class="answer-icon">
+                            3
+                        </span>
+
+                        <span class="answer-text">
+                            Level 3
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectQualification('level4')"
+                    >
+
+                        <span class="answer-icon">
+                            4
+                        </span>
+
+                        <span class="answer-text">
+                            Level 4
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectQualification('level5')"
+                    >
+
+                        <span class="answer-icon">
+                            5
+                        </span>
+
+                        <span class="answer-text">
+                            Level 5
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectQualification('level6')"
+                    >
+
+                        <span class="answer-icon">
+                            6
+                        </span>
+
+                        <span class="answer-text">
+                            Level 6
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 QUESTION 2
+            ================================================= -->
+
+            <div
+                class="question"
+                id="question2"
+                style="display:none;"
+            >
+
+                <span class="question-number">
+                    Question 02
+                </span>
+
+                <h2>
+                    What is your main career goal?
+                </h2>
+
+                <p class="question-description">
+                    Choose the outcome you would most like to achieve.
+                </p>
+
+
+                <div class="answers">
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectCareerGoal('start')"
+                    >
+
+                        <span class="answer-icon">
+                            🚀
+                        </span>
+
+                        <span class="answer-text">
+                            Start a career in care
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectCareerGoal('senior')"
+                    >
+
+                        <span class="answer-icon">
+                            ⭐
+                        </span>
+
+                        <span class="answer-text">
+                            Become a senior care worker
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectCareerGoal('management')"
+                    >
+
+                        <span class="answer-icon">
+                            👔
+                        </span>
+
+                        <span class="answer-text">
+                            Move into care management
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectCareerGoal('skills')"
+                    >
+
+                        <span class="answer-icon">
+                            📚
+                        </span>
+
+                        <span class="answer-text">
+                            Develop my existing skills
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectCareerGoal('higher')"
+                    >
+
+                        <span class="answer-icon">
+                            📈
+                        </span>
+
+                        <span class="answer-text">
+                            Progress to a higher qualification
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+
+                <div class="navigation">
+
+                    <button
+                        class="back-button"
+                        onclick="showQuestion(1)"
+                    >
+                        ← Back
+                    </button>
+
+                    <span class="secure-text">
+                        Your answers stay in this browser.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 QUESTION 3
+            ================================================= -->
+
+            <div
+                class="question"
+                id="question3"
+                style="display:none;"
+            >
+
+                <span class="question-number">
+                    Question 03
+                </span>
+
+                <h2>
+                    What area of care interests you?
+                </h2>
+
+                <p class="question-description">
+                    This helps us understand which career direction suits you.
+                </p>
+
+
+                <div class="answers">
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectCareType('adult')"
+                    >
+
+                        <span class="answer-icon">
+                            🤝
+                        </span>
+
+                        <span class="answer-text">
+                            Adult social care
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectCareType('health')"
+                    >
+
+                        <span class="answer-icon">
+                            ❤️
+                        </span>
+
+                        <span class="answer-text">
+                            Health and social care
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectCareType('management')"
+                    >
+
+                        <span class="answer-icon">
+                            📋
+                        </span>
+
+                        <span class="answer-text">
+                            Care management
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectCareType('children')"
+                    >
+
+                        <span class="answer-icon">
+                            👨‍👩‍👧
+                        </span>
+
+                        <span class="answer-text">
+                            Children and young people
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectCareType('unsure')"
+                    >
+
+                        <span class="answer-icon">
+                            ?
+                        </span>
+
+                        <span class="answer-text">
+                            Not sure yet
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+
+                <div class="navigation">
+
+                    <button
+                        class="back-button"
+                        onclick="showQuestion(2)"
+                    >
+                        ← Back
+                    </button>
+
+                    <span class="secure-text">
+                        Almost halfway there.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 QUESTION 4
+            ================================================= -->
+
+            <div
+                class="question"
+                id="question4"
+                style="display:none;"
+            >
+
+                <span class="question-number">
+                    Question 04
+                </span>
+
+                <h2>
+                    How much experience do you have?
+                </h2>
+
+                <p class="question-description">
+                    Your experience can help determine your next suitable step.
+                </p>
+
+
+                <div class="answers">
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectExperience('none')"
+                    >
+
+                        <span class="answer-icon">
+                            🌱
+                        </span>
+
+                        <span class="answer-text">
+                            No experience
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectExperience('less1')"
+                    >
+
+                        <span class="answer-icon">
+                            1
+                        </span>
+
+                        <span class="answer-text">
+                            Less than 1 year
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectExperience('1to3')"
+                    >
+
+                        <span class="answer-icon">
+                            2
+                        </span>
+
+                        <span class="answer-text">
+                            1 to 3 years
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectExperience('more3')"
+                    >
+
+                        <span class="answer-icon">
+                            3+
+                        </span>
+
+                        <span class="answer-text">
+                            More than 3 years
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectExperience('professional')"
+                    >
+
+                        <span class="answer-icon">
+                            ✓
+                        </span>
+
+                        <span class="answer-text">
+                            I'm an experienced professional
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+
+                <div class="navigation">
+
+                    <button
+                        class="back-button"
+                        onclick="showQuestion(3)"
+                    >
+                        ← Back
+                    </button>
+
+                    <span class="secure-text">
+                        One more question after this.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 QUESTION 5
+            ================================================= -->
+
+            <div
+                class="question"
+                id="question5"
+                style="display:none;"
+            >
+
+                <span class="question-number">
+                    Question 05
+                </span>
+
+                <h2>
+                    What would you like to do next?
+                </h2>
+
+                <p class="question-description">
+                    Tell us what your next step looks like.
+                </p>
+
+
+                <div class="answers">
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectProgression('career')"
+                    >
+
+                        <span class="answer-icon">
+                            🚀
+                        </span>
+
+                        <span class="answer-text">
+                            Start my career
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectProgression('qualification')"
+                    >
+
+                        <span class="answer-icon">
+                            🎓
+                        </span>
+
+                        <span class="answer-text">
+                            Gain a recognised qualification
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectProgression('higher')"
+                    >
+
+                        <span class="answer-icon">
+                            📈
+                        </span>
+
+                        <span class="answer-text">
+                            Progress to a higher level
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectProgression('management')"
+                    >
+
+                        <span class="answer-icon">
+                            👔
+                        </span>
+
+                        <span class="answer-text">
+                            Move into management
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="answer-button"
+                        onclick="selectProgression('skills')"
+                    >
+
+                        <span class="answer-icon">
+                            📚
+                        </span>
+
+                        <span class="answer-text">
+                            Improve my existing skills
+                        </span>
+
+                        <span class="answer-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+
+                <div class="navigation">
+
+                    <button
+                        class="back-button"
+                        onclick="showQuestion(4)"
+                    >
+                        ← Back
+                    </button>
+
+                    <span class="secure-text">
+                        We'll recommend your next step.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RESULTS
+            ================================================= -->
+
+            <div
+                id="results"
+                style="display:none;"
+            >
+
+                <div class="result-header">
+
+                    <div class="success-icon">
+                        ✓
+                    </div>
+
+                    <h2>
+                        Your Recommended Qualification
+                    </h2>
+
+                    <p>
+                        Based on the answers you provided.
+                    </p>
+
+                </div>
+
+
+                <div id="recommendation"></div>
+
+
+                <div class="result-actions">
+
+                    <button
+                        class="primary-button"
+                        id="viewQualificationButton"
+                        onclick="viewQualification()"
+                    >
+                        View Qualification →
+                    </button>
+
+                    <button
+                        class="secondary-button"
+                        onclick="restartFinder()"
+                    >
+                        Start Again
+                    </button>
+
+                </div>
+
+
+                <div class="finder-footer">
+
+                    This recommendation is based on the information
+                    you provided. Always check the qualification's
+                    current entry requirements before enrolment.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
 
 </div>
 
 
+
 <script>
 
-/* =========================================================
-   ILC QUALIFICATION DATA
-   ========================================================= */
+
+/* ============================================================
+   QUALIFICATION DATA
+============================================================ */
+
 
 const qualifications = [
-
-    /* LEVEL 2 */
 
     {
         id: "level2-care",
@@ -213,6 +2249,7 @@ const qualifications = [
         salary: "£24,000–£32,000",
         url: "https://inspirelondoncollege.co.uk/product/level-2-diploma-in-care-qualifi/"
     },
+
 
     {
         id: "level2-dementia",
@@ -232,8 +2269,6 @@ const qualifications = [
     },
 
 
-    /* LEVEL 3 */
-
     {
         id: "level3-health-social",
         level: 3,
@@ -251,25 +2286,9 @@ const qualifications = [
         url: "https://inspirelondoncollege.co.uk/product/level-3-diploma-in-health-and-social-care/"
     },
 
-    {
-        id: "level3-foundation",
-        level: 3,
-        title: "OTHM – Level 3 Foundation Diploma in Health and Social Care",
-        provider: "OTHM",
-        requirement: "GCSE or Equivalent",
-        experienceRequirement: "No Experience",
-        duration: "6 Months",
-        roles: [
-            "Senior Care Assistant",
-            "Healthcare Support Worker",
-            "Community Support Worker"
-        ],
-        salary: "£28,000–£36,000",
-        url: "https://inspirelondoncollege.co.uk/product/level-3-diploma-in-health-and-social-care/"
-    },
 
     {
-        id: "level3-adult-care",
+        id: "level3-adult",
         level: 3,
         title: "NOCN Level 3 Diploma in Adult Care",
         provider: "NOCN",
@@ -285,8 +2304,6 @@ const qualifications = [
         url: "https://inspirelondoncollege.co.uk/product/level-3-diploma-in-health-and-social-care/"
     },
 
-
-    /* LEVEL 4 */
 
     {
         id: "level4-health-social",
@@ -305,8 +2322,9 @@ const qualifications = [
         url: "https://inspirelondoncollege.co.uk/product/level-4-diploma-in-health-and-social-care-rqf/"
     },
 
+
     {
-        id: "level4-adult-care",
+        id: "level4-adult",
         level: 4,
         title: "iCQ Level 4 Diploma in Adult Care",
         provider: "iCQ",
@@ -322,8 +2340,6 @@ const qualifications = [
         url: "https://inspirelondoncollege.co.uk/product/level-4-diploma-in-health-and-social-care-rqf/"
     },
 
-
-    /* LEVEL 5 */
 
     {
         id: "level5-health-social",
@@ -342,22 +2358,6 @@ const qualifications = [
         url: "https://inspirelondoncollege.co.uk/product/level-5-diploma-in-health-and-social-care-qualifi/"
     },
 
-    {
-        id: "level5-extended",
-        level: 5,
-        title: "Qualifi – Level 5 Extended Diploma in Health and Social Care",
-        provider: "Qualifi",
-        requirement: "Level 4, HND, ND",
-        experienceRequirement: "No Experience",
-        duration: "12 Months",
-        roles: [
-            "Care Home Manager",
-            "Operations Manager",
-            "Registered Manager"
-        ],
-        salary: "£42,000–£60,000",
-        url: "https://inspirelondoncollege.co.uk/product/level-5-diploma-in-health-and-social-care-qualifi/"
-    },
 
     {
         id: "level5-management",
@@ -376,25 +2376,6 @@ const qualifications = [
         url: "https://inspirelondoncollege.co.uk/product/level-5-diploma-in-health-and-social-care-qualifi/"
     },
 
-    {
-        id: "level5-othm-management",
-        level: 5,
-        title: "OTHM – Level 5 Extended Diploma in Health and Social Care Management",
-        provider: "OTHM",
-        requirement: "Level 4, HND, ND",
-        experienceRequirement: "No Experience",
-        duration: "12 Months",
-        roles: [
-            "Health & Social Care Manager",
-            "Service Manager",
-            "Operations Manager"
-        ],
-        salary: "£42,000–£65,000",
-        url: "https://inspirelondoncollege.co.uk/product/level-5-diploma-in-health-and-social-care-qualifi/"
-    },
-
-
-    /* LEVEL 6 */
 
     {
         id: "level6-health-social",
@@ -413,8 +2394,6 @@ const qualifications = [
         url: "https://inspirelondoncollege.co.uk/product/level-6-diploma-in-health-and-social-care-othm/"
     },
 
-
-    /* LEVEL 7 */
 
     {
         id: "level7-health-social",
@@ -437,10 +2416,6 @@ const qualifications = [
 ];
 
 
-/* =========================================================
-   STORE USER ANSWERS
-   ========================================================= */
-
 let userAnswers = {
 
     qualification: "",
@@ -451,102 +2426,65 @@ let userAnswers = {
 
 };
 
+
 let selectedQualification = null;
 
 
-/* =========================================================
-   QUESTION 1
-   ========================================================= */
-
-function selectQualification(level) {
-
-    userAnswers.qualification = level;
-
-    localStorage.setItem(
-        "qualificationLevel",
-        level
-    );
-
-    showQuestion(2);
-
-}
+/* ============================================================
+   PROGRESS
+============================================================ */
 
 
-/* =========================================================
-   QUESTION 2
-   ========================================================= */
+function updateProgress(number) {
 
-function selectCareerGoal(goal) {
+    const progressBar =
+        document.getElementById("progressBar");
 
-    userAnswers.careerGoal = goal;
-
-    localStorage.setItem(
-        "careerGoal",
-        goal
-    );
-
-    showQuestion(3);
-
-}
+    const progressNumber =
+        document.getElementById("progressNumber");
 
 
-/* =========================================================
-   QUESTION 3
-   ========================================================= */
+    if (number > 5) {
+        number = 5;
+    }
 
-function selectCareType(type) {
 
-    userAnswers.careType = type;
+    const percentage =
+        (number / 5) * 100;
 
-    localStorage.setItem(
-        "careType",
-        type
-    );
 
-    showQuestion(4);
+    progressBar.style.width =
+        percentage + "%";
+
+
+    progressNumber.textContent =
+        "Step " + number + " of 5";
+
+
+    for (let i = 1; i <= 5; i++) {
+
+        const dot =
+            document.getElementById("dot" + i);
+
+        if (i <= number) {
+
+            dot.classList.add("active");
+
+        } else {
+
+            dot.classList.remove("active");
+
+        }
+
+    }
 
 }
 
 
-/* =========================================================
-   QUESTION 4
-   ========================================================= */
-
-function selectExperience(experience) {
-
-    userAnswers.experience = experience;
-
-    localStorage.setItem(
-        "experience",
-        experience
-    );
-
-    showQuestion(5);
-
-}
-
-
-/* =========================================================
-   QUESTION 5
-   ========================================================= */
-
-function selectProgression(progression) {
-
-    userAnswers.progression = progression;
-
-    localStorage.setItem(
-        "progression",
-        progression
-    );
-
-    showRecommendation();
-
-}
-
-
-/* =========================================================
+/* ============================================================
    SHOW QUESTION
-   ========================================================= */
+============================================================ */
+
 
 function showQuestion(number) {
 
@@ -558,45 +2496,189 @@ function showQuestion(number) {
 
         });
 
-    const question = document.getElementById(
-        "question" + number
-    );
+
+    const question =
+        document.getElementById(
+            "question" + number
+        );
+
 
     if (question) {
 
         question.style.display = "block";
+
+        question.style.animation = "none";
+
+        void question.offsetWidth;
+
+        question.style.animation =
+            "questionIn 0.45s ease";
+
+    }
+
+
+    document.getElementById(
+        "results"
+    ).style.display = "none";
+
+
+    updateProgress(number);
+
+
+    document
+        .querySelector(".finder-card")
+        .scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+}
+
+
+/* ============================================================
+   QUESTION 1
+============================================================ */
+
+
+function selectQualification(level) {
+
+    userAnswers.qualification =
+        level;
+
+    localStorage.setItem(
+        "qualificationLevel",
+        level
+    );
+
+    showQuestion(2);
+
+}
+
+
+/* ============================================================
+   QUESTION 2
+============================================================ */
+
+
+function selectCareerGoal(goal) {
+
+    userAnswers.careerGoal =
+        goal;
+
+    localStorage.setItem(
+        "careerGoal",
+        goal
+    );
+
+    showQuestion(3);
+
+}
+
+
+/* ============================================================
+   QUESTION 3
+============================================================ */
+
+
+function selectCareType(type) {
+
+    userAnswers.careType =
+        type;
+
+    localStorage.setItem(
+        "careType",
+        type
+    );
+
+    showQuestion(4);
+
+}
+
+
+/* ============================================================
+   QUESTION 4
+============================================================ */
+
+
+function selectExperience(experience) {
+
+    userAnswers.experience =
+        experience;
+
+    localStorage.setItem(
+        "experience",
+        experience
+    );
+
+    showQuestion(5);
+
+}
+
+
+/* ============================================================
+   QUESTION 5
+============================================================ */
+
+
+function selectProgression(progression) {
+
+    userAnswers.progression =
+        progression;
+
+    localStorage.setItem(
+        "progression",
+        progression
+    );
+
+    showRecommendation();
+
+}
+
+
+/* ============================================================
+   CURRENT LEVEL
+============================================================ */
+
+
+function getCurrentLevel() {
+
+    switch (
+        userAnswers.qualification
+    ) {
+
+        case "level2":
+            return 2;
+
+        case "level3":
+            return 3;
+
+        case "level4":
+            return 4;
+
+        case "level5":
+            return 5;
+
+        case "level6":
+            return 6;
+
+        default:
+            return 0;
 
     }
 
 }
 
 
-/* =========================================================
-   GET CURRENT LEVEL NUMBER
-   ========================================================= */
+/* ============================================================
+   EXPERIENCE
+============================================================ */
 
-function getCurrentLevel() {
-
-    const level = userAnswers.qualification;
-
-    if (level === "level2") return 2;
-    if (level === "level3") return 3;
-    if (level === "level4") return 4;
-    if (level === "level5") return 5;
-    if (level === "level6") return 6;
-
-    return 0;
-
-}
-
-
-/* =========================================================
-   EXPERIENCE SCORE
-   ========================================================= */
 
 function getExperienceScore() {
 
-    switch (userAnswers.experience) {
+    switch (
+        userAnswers.experience
+    ) {
 
         case "none":
             return 0;
@@ -621,34 +2703,36 @@ function getExperienceScore() {
 }
 
 
-/* =========================================================
+/* ============================================================
    RECOMMENDATION ENGINE
-   ========================================================= */
+============================================================ */
+
 
 function getRecommendation() {
 
-    const currentLevel = getCurrentLevel();
-
-    const experienceScore = getExperienceScore();
-
-    const goal = userAnswers.careerGoal;
-
-    const careType = userAnswers.careType;
-
-    const progression = userAnswers.progression;
+    const currentLevel =
+        getCurrentLevel();
 
 
-    /*
-     * LEVEL 0 / NEW TO HEALTH & SOCIAL CARE
-     */
+    const experienceScore =
+        getExperienceScore();
+
+
+    const goal =
+        userAnswers.careerGoal;
+
+
+    const careType =
+        userAnswers.careType;
+
+
+    const progression =
+        userAnswers.progression;
+
+
+    /* NEW TO CARE */
 
     if (currentLevel === 0) {
-
-        /*
-         * If the user wants management immediately,
-         * don't recommend a high-level qualification
-         * without the required progression.
-         */
 
         return qualifications.find(
             q => q.id === "level2-care"
@@ -657,23 +2741,9 @@ function getRecommendation() {
     }
 
 
-    /*
-     * LEVEL 2
-     */
+    /* LEVEL 2 */
 
     if (currentLevel === 2) {
-
-        if (
-            goal === "senior" ||
-            progression === "higher" ||
-            progression === "management"
-        ) {
-
-            return qualifications.find(
-                q => q.id === "level3-health-social"
-            );
-
-        }
 
         return qualifications.find(
             q => q.id === "level3-health-social"
@@ -682,42 +2752,9 @@ function getRecommendation() {
     }
 
 
-    /*
-     * LEVEL 3
-     */
+    /* LEVEL 3 */
 
     if (currentLevel === 3) {
-
-        /*
-         * Management-oriented users move towards Level 4.
-         */
-
-        if (
-            goal === "management" ||
-            careType === "management" ||
-            progression === "management"
-        ) {
-
-            return qualifications.find(
-                q => q.id === "level4-health-social"
-            );
-
-        }
-
-        /*
-         * Users wanting higher qualification
-         */
-
-        if (
-            progression === "higher" ||
-            goal === "higher"
-        ) {
-
-            return qualifications.find(
-                q => q.id === "level4-health-social"
-            );
-
-        }
 
         return qualifications.find(
             q => q.id === "level4-health-social"
@@ -726,27 +2763,9 @@ function getRecommendation() {
     }
 
 
-    /*
-     * LEVEL 4
-     */
+    /* LEVEL 4 */
 
     if (currentLevel === 4) {
-
-        /*
-         * Management is the strongest Level 5 pathway.
-         */
-
-        if (
-            goal === "management" ||
-            careType === "management" ||
-            progression === "management"
-        ) {
-
-            return qualifications.find(
-                q => q.id === "level5-health-social"
-            );
-
-        }
 
         return qualifications.find(
             q => q.id === "level5-health-social"
@@ -755,16 +2774,10 @@ function getRecommendation() {
     }
 
 
-    /*
-     * LEVEL 5
-     */
+    /* LEVEL 5 */
 
     if (currentLevel === 5) {
 
-        /*
-         * Experienced Level 5 users wanting
-         * higher management can progress to Level 6.
-         */
 
         if (
             experienceScore >= 2 &&
@@ -781,9 +2794,6 @@ function getRecommendation() {
 
         }
 
-        /*
-         * Adult social care management
-         */
 
         if (
             careType === "adult" ||
@@ -797,6 +2807,7 @@ function getRecommendation() {
 
         }
 
+
         return qualifications.find(
             q => q.id === "level5-health-social"
         );
@@ -804,16 +2815,10 @@ function getRecommendation() {
     }
 
 
-    /*
-     * LEVEL 6
-     */
+    /* LEVEL 6 */
 
     if (currentLevel === 6) {
 
-        /*
-         * Level 6 users with substantial experience
-         * can be directed towards Level 7.
-         */
 
         if (
             experienceScore >= 2 &&
@@ -831,16 +2836,13 @@ function getRecommendation() {
 
         }
 
+
         return qualifications.find(
             q => q.id === "level6-health-social"
         );
 
     }
 
-
-    /*
-     * FALLBACK
-     */
 
     return qualifications.find(
         q => q.id === "level3-health-social"
@@ -849,13 +2851,16 @@ function getRecommendation() {
 }
 
 
-/* =========================================================
-   DISPLAY RECOMMENDATION
-   ========================================================= */
+/* ============================================================
+   DISPLAY RESULT
+============================================================ */
+
 
 function showRecommendation() {
 
-    selectedQualification = getRecommendation();
+    selectedQualification =
+        getRecommendation();
+
 
     if (!selectedQualification) {
 
@@ -868,10 +2873,6 @@ function showRecommendation() {
     }
 
 
-    /*
-     * Hide all questions
-     */
-
     document
         .querySelectorAll(".question")
         .forEach(function(question) {
@@ -881,68 +2882,115 @@ function showRecommendation() {
         });
 
 
-    /*
-     * Create roles list
-     */
+    document.getElementById(
+        "progressArea"
+    ).style.display = "none";
+
 
     const rolesHTML =
         selectedQualification.roles
             .map(function(role) {
 
-                return "<li>" + role + "</li>";
+                return `
+                    <li class="role-tag">
+                        ${role}
+                    </li>
+                `;
 
             })
             .join("");
 
 
-    /*
-     * Recommendation content
-     */
-
     const recommendationHTML = `
 
         <div class="recommendation-card">
+
+            <div class="recommendation-badge">
+                ✓ Recommended for you
+            </div>
+
 
             <h3>
                 ${selectedQualification.title}
             </h3>
 
-            <p>
-                <strong>Awarding Body:</strong>
-                ${selectedQualification.provider}
-            </p>
 
-            <p>
-                <strong>Entry Requirement:</strong>
-                ${selectedQualification.requirement}
-            </p>
+            <div class="qualification-meta">
 
-            <p>
-                <strong>Typical Duration:</strong>
-                ${selectedQualification.duration}
-            </p>
 
-            <p>
-                <strong>Experience Requirement:</strong>
-                ${selectedQualification.experienceRequirement}
-            </p>
+                <div class="meta-item">
 
-            <p>
-                <strong>Indicative Salary Range:</strong>
-                ${selectedQualification.salary}
-            </p>
+                    <span class="meta-label">
+                        Awarding Body
+                    </span>
 
-            <h4>Potential Career Roles</h4>
+                    <span class="meta-value">
+                        ${selectedQualification.provider}
+                    </span>
 
-            <ul>
+                </div>
+
+
+                <div class="meta-item">
+
+                    <span class="meta-label">
+                        Duration
+                    </span>
+
+                    <span class="meta-value">
+                        ${selectedQualification.duration}
+                    </span>
+
+                </div>
+
+
+                <div class="meta-item">
+
+                    <span class="meta-label">
+                        Entry Requirement
+                    </span>
+
+                    <span class="meta-value">
+                        ${selectedQualification.requirement}
+                    </span>
+
+                </div>
+
+
+                <div class="meta-item">
+
+                    <span class="meta-label">
+                        Indicative Salary
+                    </span>
+
+                    <span class="meta-value">
+                        ${selectedQualification.salary}
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="roles-heading">
+                Potential Career Roles
+            </div>
+
+
+            <ul class="roles-list">
                 ${rolesHTML}
             </ul>
 
-            <p class="recommendation-note">
-                Based on the answers you provided, this qualification
-                is a suitable progression option for your current
-                career goals and qualification level.
-            </p>
+
+            <div class="recommendation-note">
+
+                Based on your current qualification level,
+                career goals, experience and progression plans,
+                this qualification is a suitable next step
+                to explore.
+
+            </div>
 
         </div>
 
@@ -951,34 +2999,30 @@ function showRecommendation() {
 
     document.getElementById(
         "recommendation"
-    ).innerHTML = recommendationHTML;
+    ).innerHTML =
+        recommendationHTML;
 
-
-    /*
-     * Show results
-     */
 
     document.getElementById(
         "results"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
 
-    /*
-     * Scroll to results
-     */
-
-    document.getElementById(
-        "results"
-    ).scrollIntoView({
-        behavior: "smooth"
-    });
+    document
+        .querySelector(".finder-card")
+        .scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
 }
 
 
-/* =========================================================
+/* ============================================================
    VIEW QUALIFICATION
-   ========================================================= */
+============================================================ */
+
 
 function viewQualification() {
 
@@ -989,7 +3033,8 @@ function viewQualification() {
 
         window.open(
             selectedQualification.url,
-            "_blank"
+            "_blank",
+            "noopener,noreferrer"
         );
 
     }
@@ -997,15 +3042,12 @@ function viewQualification() {
 }
 
 
-/* =========================================================
-   RESTART FINDER
-   ========================================================= */
+/* ============================================================
+   RESTART
+============================================================ */
+
 
 function restartFinder() {
-
-    /*
-     * Clear stored answers
-     */
 
     localStorage.removeItem(
         "qualificationLevel"
@@ -1028,10 +3070,6 @@ function restartFinder() {
     );
 
 
-    /*
-     * Reset answers
-     */
-
     userAnswers = {
 
         qualification: "",
@@ -1043,37 +3081,30 @@ function restartFinder() {
     };
 
 
-    selectedQualification = null;
+    selectedQualification =
+        null;
 
-
-    /*
-     * Hide results
-     */
 
     document.getElementById(
         "results"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
-    /*
-     * Clear recommendation
-     */
+    document.getElementById(
+        "progressArea"
+    ).style.display =
+        "block";
+
 
     document.getElementById(
         "recommendation"
-    ).innerHTML = "";
+    ).innerHTML =
+        "";
 
-
-    /*
-     * Return to first question
-     */
 
     showQuestion(1);
 
-
-    /*
-     * Scroll to top
-     */
 
     window.scrollTo({
 
@@ -1085,7 +3116,24 @@ function restartFinder() {
 
 }
 
+
+/* ============================================================
+   INITIALISE
+============================================================ */
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        updateProgress(1);
+
+    }
+);
+
 </script>
 
+
 </body>
+
 </html>
