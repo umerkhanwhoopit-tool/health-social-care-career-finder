@@ -1505,7 +1505,7 @@
         }
 
 
-        @media (prefers-reduced-motion: reduce) {
+                @media (prefers-reduced-motion: reduce) {
 
             *,
             *::before,
@@ -1522,7 +1522,243 @@
 
         }
 
+
+        /* =====================================================
+           SEO CONTENT - CLEAN STRUCTURE
+        ===================================================== */
+
+        .seo-content {
+            max-width: 1000px;
+            margin: 70px auto 0;
+            padding: 0 24px 70px;
+            color: #263238;
+            line-height: 1.75;
+        }
+
+
+        /* Main SEO headings */
+
+        .seo-content h2 {
+            font-size: 30px;
+            line-height: 1.25;
+            margin: 65px 0 20px;
+            color: #0056a6;
+            font-weight: 700;
+            position: relative;
+        }
+
+
+        .seo-content h2::after {
+            content: "";
+            display: block;
+            width: 55px;
+            height: 4px;
+            margin-top: 12px;
+            border-radius: 10px;
+            background: #00a3e0;
+        }
+
+
+        .seo-content h2:first-child {
+            margin-top: 0;
+        }
+
+
+        /* SEO subheadings */
+
+        .seo-content h3 {
+            font-size: 21px;
+            line-height: 1.4;
+            margin: 35px 0 10px;
+            color: #173f5f;
+            font-weight: 700;
+        }
+
+
+        /* SEO paragraphs */
+
+        .seo-content p {
+            max-width: 850px;
+            font-size: 17px;
+            line-height: 1.75;
+            margin: 0 0 18px;
+            color: #4b5563;
+        }
+
+
+        /* SEO lists */
+
+        .seo-content ul,
+        .seo-content ol {
+            max-width: 850px;
+            margin: 20px 0 30px;
+            padding-left: 28px;
+        }
+
+
+        .seo-content li {
+            font-size: 16px;
+            line-height: 1.65;
+            margin-bottom: 12px;
+            color: #4b5563;
+        }
+
+
+        .seo-content li strong {
+            color: #173f5f;
+        }
+
+
+        /* =====================================================
+           QUALIFICATION COMPARISON TABLE
+        ===================================================== */
+
+        .qualification-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 30px 0 45px;
+            border-radius: 14px;
+            border: 1px solid #dfe8ef;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            background: #ffffff;
+        }
+
+
+        .seo-content table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+
+        .seo-content th {
+            background: #0056a6;
+            color: #ffffff;
+            padding: 16px 18px;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+
+        .seo-content td {
+            padding: 15px 18px;
+            border-bottom: 1px solid #e8edf2;
+            font-size: 15px;
+            color: #4b5563;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+
+
+        .seo-content tbody tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+
+        .seo-content tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        /* =====================================================
+           ILC INTERNAL LINKS
+        ===================================================== */
+
+        .seo-content a {
+            color: #0056a6;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+
+        .seo-content a:hover {
+            color: #00a3e0;
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           MOBILE SEO CONTENT
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .seo-content {
+                margin-top: 45px;
+                padding: 0 18px 50px;
+            }
+
+
+            .seo-content h2 {
+                font-size: 25px;
+                line-height: 1.3;
+                margin-top: 48px;
+            }
+
+
+            .seo-content h3 {
+                font-size: 19px;
+                margin-top: 28px;
+            }
+
+
+            .seo-content p {
+                font-size: 16px;
+                line-height: 1.7;
+            }
+
+
+            .seo-content li {
+                font-size: 15px;
+            }
+
+
+            .qualification-table-wrapper {
+                margin-top: 25px;
+                border-radius: 10px;
+            }
+
+
+            .seo-content th,
+            .seo-content td {
+                padding: 13px 14px;
+            }
+        }
+
+
+        @media (max-width: 480px) {
+
+            .seo-content {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+
+            .seo-content h2 {
+                font-size: 23px;
+            }
+
+
+            .seo-content h3 {
+                font-size: 18px;
+            }
+
+
+            .seo-content p {
+                font-size: 15.5px;
+            }
+        }
+
+
     </style>
+
+</head>
+
+
+<body>
 
 </head>
 
