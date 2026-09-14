@@ -39,6 +39,212 @@
 >
 
 <meta property="og:type" content="website">
+
+/* =========================================
+   SEO CONTENT - CLEAN STRUCTURE
+   ========================================= */
+
+.seo-content {
+    max-width: 1000px;
+    margin: 70px auto 0;
+    padding: 0 24px 70px;
+    color: #263238;
+    line-height: 1.75;
+}
+
+/* Main section headings */
+.seo-content h2 {
+    font-size: 30px;
+    line-height: 1.25;
+    margin: 65px 0 20px;
+    color: #0056a6;
+    font-weight: 700;
+    position: relative;
+}
+
+/* Small accent underneath H2 */
+.seo-content h2::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 4px;
+    margin-top: 12px;
+    border-radius: 10px;
+    background: #00a6a6;
+}
+
+/* First H2 should not have huge top spacing */
+.seo-content h2:first-child {
+    margin-top: 0;
+}
+
+/* Subheadings */
+.seo-content h3 {
+    font-size: 21px;
+    line-height: 1.4;
+    margin: 35px 0 10px;
+    color: #173f5f;
+    font-weight: 700;
+}
+
+/* Paragraphs */
+.seo-content p {
+    font-size: 17px;
+    margin: 0 0 18px;
+    color: #4b5563;
+}
+
+/* Lists */
+.seo-content ul,
+.seo-content ol {
+    margin: 20px 0 30px;
+    padding-left: 28px;
+}
+
+.seo-content li {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #4b5563;
+}
+
+/* Bold text inside lists */
+.seo-content li strong {
+    color: #173f5f;
+}
+
+/* Qualification level sections */
+.seo-content h3 + p {
+    max-width: 850px;
+}
+
+/* Comparison table container */
+.qualification-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 30px 0 45px;
+    border-radius: 14px;
+    border: 1px solid #e1e8ef;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    background: #ffffff;
+}
+
+/* Table */
+.seo-content table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+/* Table header */
+.seo-content th {
+    background: #0056a6;
+    color: #ffffff;
+    padding: 16px 18px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Table cells */
+.seo-content td {
+    padding: 15px 18px;
+    border-bottom: 1px solid #e8edf2;
+    font-size: 15px;
+    color: #4b5563;
+    line-height: 1.5;
+    vertical-align: top;
+}
+
+/* Alternating table rows */
+.seo-content tbody tr:nth-child(even) {
+    background: #f7fafc;
+}
+
+/* Remove border from final row */
+.seo-content tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ILC links */
+.seo-content a {
+    color: #0056a6;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.seo-content a:hover {
+    color: #00a6a6;
+    text-decoration: underline;
+}
+
+/* Explore qualifications section */
+.seo-content h2:last-of-type {
+    margin-top: 60px;
+}
+
+.seo-content h2:last-of-type + p {
+    margin-bottom: 22px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .seo-content {
+        margin-top: 45px;
+        padding: 0 18px 50px;
+    }
+
+    .seo-content h2 {
+        font-size: 25px;
+        margin-top: 48px;
+    }
+
+    .seo-content h3 {
+        font-size: 19px;
+        margin-top: 28px;
+    }
+
+    .seo-content p {
+        font-size: 16px;
+    }
+
+    .seo-content li {
+        font-size: 15px;
+    }
+
+    .qualification-table-wrapper {
+        margin-top: 25px;
+        border-radius: 10px;
+    }
+
+    .seo-content th,
+    .seo-content td {
+        padding: 13px 14px;
+    }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+
+    .seo-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .seo-content h2 {
+        font-size: 23px;
+    }
+
+    .seo-content h3 {
+        font-size: 18px;
+    }
+
+    .seo-content p {
+        font-size: 15.5px;
+    }
+}
     
     <style>
 
